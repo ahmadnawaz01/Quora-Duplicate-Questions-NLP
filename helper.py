@@ -4,6 +4,11 @@ import distance
 from fuzzywuzzy import fuzz
 import pickle
 import numpy as np
+import nltk
+from nltk.corpus import stopwords
+
+
+nltk.download('stopwords', quiet=True)
 
 cv = pickle.load(open('cv.pkl','rb'))
 
@@ -22,7 +27,7 @@ def test_total_words(q1,q2):
 def test_fetch_token_features(q1, q2):
     SAFE_DIV = 0.0001
 
-    STOP_WORDS = pickle.load(open('stopwords.pkl','rb'))
+    STOP_WORDS = set(stopwords.words('english'))
 
     token_features = [0.0] * 8
 
